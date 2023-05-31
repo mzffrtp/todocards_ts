@@ -8,7 +8,7 @@ const Header: React.FunctionComponent = () => {
     <Navbar bg="light" variant="light" className='d-flex justify-content-center align-items-center border-bottom border-3 border-warning'>
         <Container className='d-flex justify-content-center'>
             <Navbar.Brand>
-                <p>💡 Note Cards 📝</p>
+                <p className='my-2 shadow-lg rounded fs-3 fw-bolder text-info text-opacity-75'>💡 Note Cards 📝</p>
             </Navbar.Brand>
         </Container>
     </Navbar>
