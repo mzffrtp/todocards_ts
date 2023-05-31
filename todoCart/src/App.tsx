@@ -19,11 +19,10 @@ function App() {
     <Container className="mt-5">
       <Row>
         <Col>
-          <NotesList notes = {notes} />
+          <NotesList notes = {notes} setNotes = {setNotes} />
         </Col>
       </Row>
     </Container>
-    <div className="App">app</div>
     </>
       
     )
