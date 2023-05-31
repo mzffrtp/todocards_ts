@@ -1,14 +1,10 @@
 import { useState } from "react"
+import { Note } from "./models/note.model"
+import Header from "./components/header"
 
 function App() {
 
-  const [notes, setNotes] = useState<{
-    id:string,
-    title:string,
-    text:string,
-    color:string,
-    date:string
-  }[]>([{
+  const [notes, setNotes] = useState<Note[]>([{
     id: (new Date).toString(),
     title: "Meetings",
     text: "Schedule meeting with UI/UX",
@@ -16,7 +12,11 @@ function App() {
     date: (new Date).toDateString()
   }])
   return (
-      <div className="App">app</div>
+    <>
+    <Header />
+    <div className="App">app</div>
+    </>
+      
     )
 }
 
