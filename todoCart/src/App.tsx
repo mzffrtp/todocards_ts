@@ -3,6 +3,7 @@ import { Note } from "./models/note.model"
 import Header from "./components/header"
 import { Col, Container, Row } from "react-bootstrap"
 import NotesList from "./components/notesList"
+import CreateNotes from "./components/createNotes"
 
 function App() {
 
@@ -11,7 +12,8 @@ function App() {
     title: "Meetings",
     text: "Schedule meeting with UI/UX",
     color: "#dfdfdf",
-    date: (new Date).toDateString()
+    date: (new Date).toDateString(),
+    is_done: false
   }])
   return (
     <>
@@ -20,6 +22,13 @@ function App() {
       <Row>
         <Col>
           <NotesList notes = {notes} setNotes = {setNotes} />
+        </Col>
+      </Row>
+    </Container>
+    <Container className="mt-5">
+      <Row>
+        <Col>
+          <CreateNotes notes = {notes} setNotes = {setNotes} />
         </Col>
       </Row>
     </Container>

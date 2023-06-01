@@ -3,6 +3,7 @@ export interface Note {
     title:string,
     text:string,
     color:string,
-    date:string
+    date:string,
+    is_done:boolean
   }
   
