@@ -6,7 +6,7 @@ import NotesList from "./components/notesList"
 import CreateNotes from "./components/createNotes"
 
 function App() {
-
+  const [showModal, setShowModal] = useState<boolean>(false)
   const [notes, setNotes] = useState<Note[]>([{
     id: (new Date).toString(),
     title: "Meetings",
@@ -21,14 +21,19 @@ function App() {
     <Container className="mt-5">
       <Row>
         <Col>
-          <NotesList notes = {notes} setNotes = {setNotes} />
+          <NotesList notes = {notes} setNotes = {setNotes} setShowModal = {setShowModal}/>
         </Col>
       </Row>
     </Container>
     <Container className="mt-5">
       <Row>
         <Col>
-          <CreateNotes notes = {notes} setNotes = {setNotes} />
+          {
+            showModal && <CreateNotes 
+            notes = {notes} 
+            setNotes = {setNotes}
+            setShowModal = {setShowModal} />
+          }
         </Col>
       </Row>
     </Container>

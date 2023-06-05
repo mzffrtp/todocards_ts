@@ -19,7 +19,8 @@ const Notes: React.FunctionComponent<INotesProps> = ({
             <Card.Title>Title: {note.title}</Card.Title>
             <Card.Text>Note: {note.text}</Card.Text>
             <Card.Text>Date: {note.date}</Card.Text>
-            <Card.Subtitle>Completed: {note.is_done}</Card.Subtitle>
+            <Card.Subtitle style={{color: note.is_done
+             ? "black" : "red"}} >Completed: {note.is_done ? "Completed": "Not yet"}</Card.Subtitle>
 
             <Container className="d-flex justify-content-between my-2">
               <Button
