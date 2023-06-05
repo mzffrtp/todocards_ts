@@ -4,6 +4,5 @@ export interface Note {
     text:string,
     color:string,
     date:string,
-    is_done:boolean
   }
   

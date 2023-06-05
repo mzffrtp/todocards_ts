@@ -1,8 +1,9 @@
 import React from "react";
 import { Button, Container, Form } from "react-bootstrap";
+import { Note } from "@/models/note.model";
 
 interface ICreateNotes {
-  notes: Note[];
+  notes: Note [];
   setNotes: React.Dispatch<React.SetStateAction<boolean>>;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -13,7 +14,8 @@ const CreateNotes: React.FC<ICreateNotes> = ({
   setShowModal,
 }) => {
   return (
-    <Container className="border border-2 border-warning-subtle rounded shadow-lg w-75">
+    <Container className="border border-2 border-warning-subtle rounded shadow-lg w-75
+    position-fixed top-50 start-50 translate-middle z-3" style={{backgroundColor:"#F8F8FF"}}>
       <h2 className="text-center my-1"> Create Notes</h2>
       <div className="d-flex justify-content-center">
         <Form
@@ -23,14 +25,20 @@ const CreateNotes: React.FC<ICreateNotes> = ({
             const formData = new FormData(e.currentTarget);
             const formJson = Object.fromEntries(formData.entries());
 
+            console.log(formJson);
+            
+            
+
             notes.push({
               id: formJson.id,
               title: formJson.title,
               text: formJson.textarea,
-              color: formJson.olor,
-              date: formJson.Date,
-              is_done: formJson.Date,
+              color: formJson.color,
+              date: (new Date).toDateString(),
+              is_done: formJson.is_done ? true : false,
             });
+
+          
 
             setNotes([...notes])
             setShowModal(false)
@@ -64,15 +72,6 @@ const CreateNotes: React.FC<ICreateNotes> = ({
               defaultValue="#563d7c"
               title="Choose your color"
             ></Form.Control>
-          </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Label htmlFor="isDoneInput">Completed or Not</Form.Label>
-            <Form.Check
-              name="is_done"
-              type="checkbox"
-              value=""
-              id="isDoneInput"
-            ></Form.Check>
           </Form.Group>
           <Container className="d-flex gap-3 justify-content-center">
             <Button type="submit" variant="outline-success">

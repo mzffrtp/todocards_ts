@@ -1,6 +1,6 @@
-import { Note } from "@/models/note.model";
 import * as React from "react";
 import { Button, Card, Container } from "react-bootstrap";
+import { Note } from "@/models/note.model";
 
 interface INotesProps {
   note: Note;
@@ -19,22 +19,13 @@ const Notes: React.FunctionComponent<INotesProps> = ({
             <Card.Title>Title: {note.title}</Card.Title>
             <Card.Text>Note: {note.text}</Card.Text>
             <Card.Text>Date: {note.date}</Card.Text>
-            <Card.Subtitle style={{color: note.is_done
-             ? "black" : "red"}} >Completed: {note.is_done ? "Completed": "Not yet"}</Card.Subtitle>
-
-            <Container className="d-flex justify-content-between my-2">
+            <Container className="d-flex justify-content-center">
               <Button
                 className="w-25 mt-1"
                 variant="outline-danger"
                 onClick={() => handleDelete(note.id)}
               >
                 Delete
-              </Button>
-              <Button className="w-25 mt-1" variant="outline-warning">
-                Edit
-              </Button>
-              <Button className="w-25 mt-1" variant="outline-success">
-                Done
               </Button>
             </Container>
           </Card.Body>
