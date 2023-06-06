@@ -1,10 +1,11 @@
 import React from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { Note } from "@/models/note.model";
+import { toast } from "react-toastify";
 
 interface ICreateNotes {
-  notes: Note [];
-  setNotes: React.Dispatch<React.SetStateAction<boolean>>;
+  notes: Note[];
+  setNotes:React.Dispatch<React.SetStateAction<Note[]>>
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -14,8 +15,11 @@ const CreateNotes: React.FC<ICreateNotes> = ({
   setShowModal,
 }) => {
   return (
-    <Container className="border border-2 border-warning-subtle rounded shadow-lg w-75
-    position-fixed top-50 start-50 translate-middle z-3" style={{backgroundColor:"#F8F8FF"}}>
+    <Container
+      className="border border-2 border-warning-subtle rounded shadow-lg w-75
+    position-fixed top-50 start-50 translate-middle z-3"
+      style={{ backgroundColor: "#F8F8FF" }}
+    >
       <h2 className="text-center my-1"> Create Notes</h2>
       <div className="d-flex justify-content-center">
         <Form
@@ -25,24 +29,24 @@ const CreateNotes: React.FC<ICreateNotes> = ({
             const formData = new FormData(e.currentTarget);
             const formJson = Object.fromEntries(formData.entries());
 
-            console.log(formJson);
-            
-            
+            if (!formJson.title | !formJson.Note | !formJson.color) {
+              toast.error("All fields are mandatory!", {
+                theme:"dark"
+              });
+              setShowModal(false)
+              return
+            }
 
             notes.push({
-              id: formJson.id,
-              title: formJson.title,
-              text: formJson.textarea,
-              color: formJson.color,
-              date: (new Date).toDateString(),
-              is_done: formJson.is_done ? true : false,
+              id: formJson.id as string,
+              title: formJson.title as string,
+              text: formJson.textarea as string,
+              color: formJson.color as string,
+              date: new Date().toDateString() as string
             });
 
-          
-
-            setNotes([...notes])
-            setShowModal(false)
-          
+            setNotes([...notes]);
+            setShowModal(false);
           }}
           className="my-3 w-75"
         >

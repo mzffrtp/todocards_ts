@@ -4,6 +4,9 @@ import Header from "./components/header";
 import { Col, Container, Row } from "react-bootstrap";
 import NotesList from "./components/notesList";
 import CreateNotes from "./components/createNotes";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer} from "react-toastify";
+
 
 function App() {
   
@@ -15,12 +18,12 @@ function App() {
       text: "Schedule meeting with UI/UX",
       color: "#dfdfdf",
       date: new Date().toDateString(),
-      is_done: false,
     },
   ]);
   return (
     <>
       <Header />
+      <ToastContainer />
       <Container className="mt-5 position-relative">
         <Row>
           <Col>
