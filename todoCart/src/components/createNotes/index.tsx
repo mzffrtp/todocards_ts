@@ -27,25 +27,31 @@ const CreateNotes: React.FC<ICreateNotes> = ({
             e.preventDefault();
 
             const formData = new FormData(e.currentTarget);
-            const formJson = Object.fromEntries(formData.entries());
+            const formDataJson = Object.fromEntries(formData.entries());
 
-            if (!formJson.title | !formJson.Note | !formJson.color) {
+            console.log("formJsondata", formDataJson);
+            
+
+            if (!formDataJson.title as boolean ) {
               toast.error("All fields are mandatory!", {
                 theme:"dark"
               });
-              setShowModal(false)
               return
             }
 
             notes.push({
-              id: formJson.id as string,
-              title: formJson.title as string,
-              text: formJson.textarea as string,
-              color: formJson.color as string,
+              id: new Date().toString(),
+              title: formDataJson.title as string,
+              text: formDataJson.textarea as string,
+              color: formDataJson.color as string,
               date: new Date().toDateString() as string
             });
-
             setNotes([...notes]);
+            console.log("notes", notes);
+            
+            toast.success("Note was succesfully created", {
+              theme:"dark"
+            })
             setShowModal(false);
           }}
           className="my-3 w-75"

@@ -2,6 +2,7 @@ import { Note } from "@/models/note.model";
 import Notes from "../notes";
 import { Button, Container } from "react-bootstrap";
 import addnote from "@/assets/pin.gif";
+import { toast } from "react-toastify";
 
 interface INotesListProps {
   notes: Note[];
@@ -17,7 +18,10 @@ const NotesList: React.FC<INotesListProps> = ({
  
 }) => {
   const handleDelete = (id: string) => {
+    console.log("dleted id", id);
     setNotes(notes.filter((note) => note.id !== id));
+    toast.success("Note was deleted succesfully!")
+    
   };
   const renderNotes = () => {
     return notes.map<JSX.Element>((note) => {
